@@ -6,6 +6,28 @@ const app = express();
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 
+// Security headers and CSP for WebSocket support
+app.use((req, res, next) => {
+  // Allow WebSocket connections in CSP
+  res.setHeader('Content-Security-Policy', 
+    "default-src 'self'; " +
+    "script-src 'self' 'unsafe-inline' 'unsafe-eval'; " +
+    "style-src 'self' 'unsafe-inline'; " +
+    "connect-src 'self' ws: wss: https:; " +
+    "img-src 'self' data: https:; " +
+    "font-src 'self' https:; " +
+    "object-src 'none'; " +
+    "base-uri 'self';"
+  );
+  
+  // Additional security headers
+  res.setHeader('X-Content-Type-Options', 'nosniff');
+  res.setHeader('X-Frame-Options', 'DENY');
+  res.setHeader('X-XSS-Protection', '1; mode=block');
+  
+  next();
+});
+
 app.use((req, res, next) => {
   const start = Date.now();
   const path = req.path;
