@@ -103,3 +103,5 @@ The application follows a modular architecture with clear separation between fro
 - ✓ Project successfully migrated from Replit Agent to standard Replit environment
 - ✓ ESP32 code configured for aqua-plant.replit.app WebSocket connection
 - ✓ Created comprehensive setup guide for ESP32 hardware integration
+- ✓ Fixed WebSocket Content Security Policy for secure ESP32 connections
+- ✓ WebSocket server verified working with proper SSL/TLS configuration

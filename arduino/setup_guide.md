@@ -58,11 +58,20 @@ Your ESP32 will automatically:
 **WebSocket not connecting?**
 - Verify your internet connection
 - The web app must be running on aqua-plant.replit.app
+- If connection fails, try these alternatives:
+  1. Check if you can access https://aqua-plant.replit.app in browser
+  2. Wait 30 seconds and ESP32 will auto-retry connection
+  3. Restart ESP32 to force reconnection
 
 **Sensors giving weird readings?**
 - Check all wire connections
 - Run the calibration function for moisture sensor
 - Make sure sensors are powered correctly
+
+**ESP32 connection issues with Replit:**
+- Replit's deployment may have WebSocket limitations
+- The ESP32 will continue trying to connect every 5 seconds
+- Web interface should still work for manual control
 
 ## Serial Monitor Output
 

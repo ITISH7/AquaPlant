@@ -56,10 +56,19 @@ void setup() {
   Serial.print("Connected to WiFi. IP: ");
   Serial.println(WiFi.localIP());
   
-  // Initialize WebSocket
-  webSocket.begin(websocket_host, websocket_port, websocket_path);
+  // Initialize WebSocket with SSL for secure connection to Replit
+  webSocket.beginSSL(websocket_host, websocket_port, websocket_path);
   webSocket.onEvent(webSocketEvent);
   webSocket.setReconnectInterval(5000);
+  webSocket.enableHeartbeat(15000, 3000, 2);  // Enable heartbeat
+  
+  Serial.println("Attempting WebSocket connection to:");
+  Serial.print("Host: ");
+  Serial.println(websocket_host);
+  Serial.print("Port: ");
+  Serial.println(websocket_port);
+  Serial.print("Path: ");
+  Serial.println(websocket_path);
   
   Serial.println("Smart Plant Watering System Started");
   Serial.println("Pin Configuration:");

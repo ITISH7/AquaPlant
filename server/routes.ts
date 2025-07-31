@@ -66,10 +66,41 @@ export async function registerRoutes(app: Express): Promise<Server> {
     }
   });
 
+  // Move WebSocket creation before the test endpoint
   const httpServer = createServer(app);
+  
+  // WebSocket Server with additional configuration for Replit
+  const wss = new WebSocketServer({ 
+    server: httpServer, 
+    path: '/ws',
+    perMessageDeflate: false,
+    clientTracking: true
+  });
 
-  // WebSocket Server
-  const wss = new WebSocketServer({ server: httpServer, path: '/ws' });
+  // WebSocket test endpoint (now wss is defined)
+  app.get("/api/ws-test", (req, res) => {
+    res.json({
+      message: "WebSocket server is configured",
+      path: "/ws",
+      clients: wss.clients.size,
+      readyState: "ready"
+    });
+  });
+
+
+
+  // Log WebSocket connections for debugging
+  wss.on('connection', (ws, req) => {
+    console.log(`Client connected from ${req.socket.remoteAddress}`);
+    
+    ws.on('close', () => {
+      console.log('Client disconnected');
+    });
+    
+    ws.on('error', (error) => {
+      console.error('WebSocket error:', error);
+    });
+  });
 
   // System state
   let currentMoisture = 68;
