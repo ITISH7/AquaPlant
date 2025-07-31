@@ -18,8 +18,8 @@ const char* ssid = "YOUR_WIFI_SSID";          // Replace with your WiFi SSID
 const char* password = "YOUR_WIFI_PASSWORD";   // Replace with your WiFi password
 
 // WebSocket Configuration
-const char* websocket_host = "YOUR_REPLIT_URL";  // Replace with your Replit app URL (without https://)
-const int websocket_port = 443;                  // Use 443 for HTTPS, 80 for HTTP
+const char* websocket_host = "aqua-plant.replit.app";  // Your Replit app URL
+const int websocket_port = 443;                         // Use 443 for HTTPS
 const char* websocket_path = "/ws";
 
 WebSocketsClient webSocket;
