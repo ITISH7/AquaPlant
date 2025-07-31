@@ -3,7 +3,7 @@ import { type WateringLog } from "@shared/schema";
 import { Droplet, Calendar, AlertCircle } from "lucide-react";
 
 export default function ActivityLog() {
-  const { data: logs = [], isLoading } = useQuery({
+  const { data: logs = [], isLoading } = useQuery<WateringLog[]>({
     queryKey: ['/api/logs'],
   });
 

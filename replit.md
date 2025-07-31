@@ -90,3 +90,13 @@ Preferred communication style: Simple, everyday language.
 - Push-based deployment with `db:push` command
 
 The application follows a modular architecture with clear separation between frontend, backend, and shared code. The system is designed to be scalable and maintainable, with TypeScript providing type safety across all layers and a comprehensive component library ensuring consistent UI/UX.
+
+## Recent Changes
+
+### July 31, 2025
+- ✓ Fixed TypeScript errors in storage layer and components
+- ✓ Added complete ESP32 circuit diagram and Arduino code
+- ✓ Implemented auto-stop functionality when moisture reaches 100%
+- ✓ Created comprehensive hardware integration documentation
+- ✓ Soil moisture sensor connected to GPIO 36 (analog input)
+- ✓ DHT22 sensor on GPIO 4, LDR on GPIO 34, pump relay on GPIO 2

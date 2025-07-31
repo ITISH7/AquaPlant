@@ -18,7 +18,7 @@ export default function ScheduleManager() {
   const [editingSchedule, setEditingSchedule] = useState<Schedule | null>(null);
   const { toast } = useToast();
 
-  const { data: schedules = [], isLoading } = useQuery({
+  const { data: schedules = [], isLoading } = useQuery<Schedule[]>({
     queryKey: ['/api/schedules'],
   });
 
@@ -108,7 +108,7 @@ export default function ScheduleManager() {
     const now = new Date();
     const currentTime = now.getHours() * 60 + now.getMinutes();
     
-    let nextSchedule = null;
+    let nextSchedule: { schedule: Schedule; diff: number } | null = null;
     let minDiff = Infinity;
 
     activeSchedules.forEach((schedule: Schedule) => {

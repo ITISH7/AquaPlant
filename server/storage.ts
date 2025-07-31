@@ -47,8 +47,11 @@ export class MemStorage implements IStorage {
   async createSchedule(insertSchedule: InsertSchedule): Promise<Schedule> {
     const id = randomUUID();
     const schedule: Schedule = {
-      ...insertSchedule,
       id,
+      time: insertSchedule.time,
+      frequency: insertSchedule.frequency || "daily",
+      duration: insertSchedule.duration || 30,
+      active: insertSchedule.active ?? true,
       createdAt: new Date(),
     };
     this.schedules.set(id, schedule);
@@ -77,8 +80,14 @@ export class MemStorage implements IStorage {
   async createWateringLog(insertLog: InsertLog): Promise<WateringLog> {
     const id = randomUUID();
     const log: WateringLog = {
-      ...insertLog,
       id,
+      type: insertLog.type,
+      startTime: insertLog.startTime,
+      endTime: insertLog.endTime || null,
+      startMoisture: insertLog.startMoisture,
+      endMoisture: insertLog.endMoisture || null,
+      status: insertLog.status || "running",
+      duration: insertLog.duration || null,
     };
     this.wateringLogs.set(id, log);
     return log;
